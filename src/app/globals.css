@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Class-based dark mode — toggled via <html class="dark"> */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -12,15 +15,56 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Dark mode ────────────────────────────────────────────────────────────
+   Tailwind v4 generates utilities as `color: var(--color-slate-*)` etc.
+   Overriding these CSS custom properties here is enough — no component
+   changes needed. The palette is inverted so light → dark and dark → light.
+   ──────────────────────────────────────────────────────────────────────── */
+.dark {
+  --background: #0f172b;
+  --foreground: #f8fafc;
+
+  /* Backgrounds */
+  --color-white:     #1e293b;   /* cards, modals, sidebar */
+  --color-slate-50:  #0f172b;   /* page background */
+  --color-slate-100: #283548;   /* hover states, subtle bg */
+
+  /* Borders & dividers */
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;   /* form input borders */
+
+  /* Icons & muted elements */
+  --color-slate-400: #62748e;
+
+  /* Text */
+  --color-slate-500: #90a1b9;   /* secondary / placeholder */
+  --color-slate-600: #cad5e2;   /* body text */
+  --color-slate-700: #e2e8f0;   /* strong text */
+  --color-slate-800: #f1f5f9;   /* near-primary */
+  --color-slate-900: #f8fafc;   /* primary text */
+
+  /* Indigo — active nav & accent elements */
+  --color-indigo-50:  #1e1b4b;
+  --color-indigo-100: #2d2a72;
+  --color-indigo-700: #a5b4fc;
+  --color-indigo-800: #c7d2fe;
+
+  /* Status badge colours (background ↔ text swap for contrast) */
+  --color-amber-100:   #431407;
+  --color-amber-800:   #fde68a;
+  --color-blue-100:    #172554;
+  --color-blue-800:    #bfdbfe;
+  --color-emerald-100: #052e16;
+  --color-emerald-800: #a7f3d0;
+}
+
+/* text-white must stay white in dark mode (buttons, avatar initials) */
+.dark .text-white {
+  color: #ffffff;
 }

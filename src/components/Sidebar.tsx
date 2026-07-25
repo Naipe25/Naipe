@@ -17,6 +17,7 @@ import {
 import { createClient } from "@/utils/supabase/client";
 import { ROLE_LABELS } from "@/lib/constants";
 import type { ProfileWithDepartment } from "@/types/database";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_ITEMS = [
   { href: "/", label: "Início", icon: Home },
@@ -41,9 +42,23 @@ export function Sidebar({ profile }: { profile: ProfileWithDepartment }) {
 
   return (
     <aside className="flex h-screen w-64 flex-col border-r border-slate-200 bg-white">
-      <div className="border-b border-slate-200 px-5 py-5">
-        <p className="text-lg font-bold tracking-tight text-slate-900">Naipe</p>
-        <p className="text-xs text-slate-500">Site interno</p>
+      <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4">
+        <div className="flex items-center gap-3 min-w-0">
+          {/* Logo — inverted to white silhouette in dark mode (SVG uses near-black fills) */}
+          <img
+            src="/Logo_Trombone.svg"
+            alt=""
+            aria-hidden="true"
+            width={36}
+            height={36}
+            className="shrink-0 dark:[filter:brightness(0)_invert(1)]"
+          />
+          <div className="min-w-0">
+            <p className="text-sm font-bold tracking-tight text-slate-900">Naipe</p>
+            <p className="text-xs text-slate-500">Site interno</p>
+          </div>
+        </div>
+        <ThemeToggle />
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
