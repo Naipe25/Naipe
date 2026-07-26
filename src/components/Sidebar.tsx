@@ -44,14 +44,13 @@ export function Sidebar({ profile }: { profile: ProfileWithDepartment }) {
     <aside className="flex h-screen w-64 flex-col border-r border-slate-200 bg-white">
       <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4">
         <div className="flex items-center gap-3 min-w-0">
-          {/* Logo — inverted to white silhouette in dark mode (SVG uses near-black fills) */}
           <img
             src="/Logo_Trombone.svg"
             alt=""
             aria-hidden="true"
             width={36}
             height={36}
-            className="shrink-0 dark:[filter:brightness(0)_invert(1)]"
+            className="shrink-0"
           />
           <div className="min-w-0">
             <p className="text-sm font-bold tracking-tight text-slate-900">Naipe</p>
