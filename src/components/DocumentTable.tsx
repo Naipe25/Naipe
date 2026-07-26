@@ -8,12 +8,18 @@ import type { AppDocument } from "@/types/database";
 
 export function DocumentTable({
   documents,
-  canDelete,
+  currentUserId,
+  isAdmin,
 }: {
   documents: AppDocument[];
-  canDelete: (doc: AppDocument) => boolean;
+  currentUserId: string | null;
+  isAdmin: boolean;
 }) {
   const router = useRouter();
+
+  function canDelete(doc: AppDocument) {
+    return isAdmin || doc.uploaded_by === currentUserId;
+  }
 
   async function handleView(storagePath: string) {
     const url = await getDocumentUrlAction(storagePath);

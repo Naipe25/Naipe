@@ -65,9 +65,8 @@ export default async function DocumentosPage({
 
       <DocumentTable
         documents={documents}
-        canDelete={(doc) =>
-          profile?.role === "admin" || doc.uploaded_by === profile?.id
-        }
+        currentUserId={profile?.id ?? null}
+        isAdmin={profile?.role === "admin"}
       />
     </div>
   );
