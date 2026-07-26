@@ -68,3 +68,12 @@ body {
 .dark .text-white {
   color: #ffffff;
 }
+
+/* Native <select> controls don't inherit the card background, only the
+   inherited text color — without this they render dark-mode text on the
+   browser's default white control background (invisible). */
+select,
+select option {
+  background-color: var(--color-white);
+  color: var(--color-slate-900);
+}
